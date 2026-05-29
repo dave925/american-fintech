@@ -22,11 +22,33 @@ const PRIMARY_ACCOUNT = Object.freeze({
     lastName: 'Couzens',
     name: 'Hannah Lovia Couzens',
     accountNumber: '45284731',
-    balance: 300000000.00
+    balance: 3256786.30
 });
+
+const PRIMARY_DEMO_TOTAL_BALANCE = 3256786.30;
 
 function isPrimaryAccountEmail(email) {
     return (email || '').toLowerCase() === PRIMARY_ACCOUNT.email.toLowerCase();
+}
+
+function isPrimaryUserSession(user) {
+    if (!user || typeof user !== 'object') return false;
+    if (isPrimaryAccountEmail(user.email)) return true;
+    if (normalizePhone(user.phone) === normalizePhone(PRIMARY_ACCOUNT.phone)) return true;
+    const normalizedName = (user.name || '').trim().toLowerCase();
+    return normalizedName === PRIMARY_ACCOUNT.name.toLowerCase();
+}
+
+function getStoredTotalBalance() {
+    const spendingBalance = parseFloat(localStorage.getItem('apexSpendingBalance') || '0');
+    const savingsBalance = parseFloat(localStorage.getItem('apexSavingsBalance') || '0');
+    if (Number.isNaN(spendingBalance) || Number.isNaN(savingsBalance)) return 0;
+    return spendingBalance + savingsBalance;
+}
+
+function formatCurrencyAmount(amount) {
+    const safeAmount = Number.isFinite(amount) ? amount : 0;
+    return `$${safeAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
 function buildPrimaryAccountTransactions() {
@@ -814,36 +836,41 @@ function initializeSignupScreen() {
 // Additional utility functions for banking features
 function setupUniversalAccount() {
     console.log('Setting up account based on user type...');
-        
-    // Get current user to determine account type
-    const currentUser = JSON.parse(localStorage.getItem('apexCurrentUser') || '{}');
-        
-    if (isPrimaryAccountEmail(currentUser.email)) {
-        console.log('Setting up primary high-value account...');
-        // Demo balance requested: 3.2567863 million
-        // Store in spending for simplicity; savings remains 0.
-        localStorage.setItem('apexSpendingBalance', '3256786.30');
-        localStorage.setItem('apexSavingsBalance', '0.00');
-        currentUser.balance = PRIMARY_ACCOUNT.balance;
-        currentUser.name = PRIMARY_ACCOUNT.name;
-        currentUser.firstName = PRIMARY_ACCOUNT.firstName;
-        currentUser.lastName = PRIMARY_ACCOUNT.lastName;
-        localStorage.setItem('apexCurrentUser', JSON.stringify(currentUser));
-    } else {
-        console.log('Setting up secondary user account with $0.00 balance...');
-        localStorage.setItem('apexSpendingBalance', '0.00');
-        localStorage.setItem('apexSavingsBalance', '0.00');
-    }
 
-    if (isPrimaryAccountEmail(currentUser.email)) {
+    const sessionData = sessionStorage.getItem('apexSession');
+    const sessionUser = sessionData ? JSON.parse(sessionData) : null;
+    const currentUser = getCurrentUser();
+    const activeUser = sessionUser || currentUser;
+    const isPrimary = isPrimaryUserSession(activeUser);
+
+    if (isPrimary) {
+        console.log('Setting up primary demo account...');
+        localStorage.setItem('apexSpendingBalance', PRIMARY_DEMO_TOTAL_BALANCE.toFixed(2));
+        localStorage.setItem('apexSavingsBalance', '0.00');
+
+        const mergedUser = {
+            ...currentUser,
+            ...activeUser,
+            balance: PRIMARY_DEMO_TOTAL_BALANCE,
+            name: PRIMARY_ACCOUNT.name,
+            firstName: PRIMARY_ACCOUNT.firstName,
+            lastName: PRIMARY_ACCOUNT.lastName,
+            email: currentUser.email || activeUser.email || PRIMARY_ACCOUNT.email,
+            phone: currentUser.phone || activeUser.phone || PRIMARY_ACCOUNT.phone
+        };
+        localStorage.setItem('apexCurrentUser', JSON.stringify(mergedUser));
+
         const transactions = buildPrimaryAccountTransactions();
         localStorage.setItem('apexTransactions', JSON.stringify(transactions));
-        const totalBalance = 3256786.30;
-        console.log('Primary account setup: $' + totalBalance.toLocaleString() + ' with', transactions.length, 'transactions');
-    } else {
-        localStorage.setItem('apexTransactions', JSON.stringify([]));
-        console.log('Secondary user account: $0.00 balance, no transactions');
+        console.log('Primary account setup: $' + PRIMARY_DEMO_TOTAL_BALANCE.toLocaleString() + ' with', transactions.length, 'transactions');
+        return;
     }
+
+    console.log('Setting up secondary user account with $0.00 balance...');
+    localStorage.setItem('apexSpendingBalance', '0.00');
+    localStorage.setItem('apexSavingsBalance', '0.00');
+    localStorage.setItem('apexTransactions', JSON.stringify([]));
+    console.log('Secondary user account: $0.00 balance, no transactions');
 }
 
 // Navigation functions
@@ -954,68 +981,67 @@ window.setupBalanceMasking = setupBalanceMasking;
 window.fillAnalyticsWithMoney = fillAnalyticsWithMoney;
 
 // Balance masking and reveal functionality with View button
-function setupBalanceMasking() {
+function setupBalanceMasking(options = {}) {
     const balanceAmountElement = document.getElementById('balanceAmount');
     if (!balanceAmountElement) return;
 
-    // Keep this element intact so all other update functions can still target #balanceAmount.
-    const spendingBalance = parseFloat(localStorage.getItem('apexSpendingBalance') || '0');
-    const savingsBalance = parseFloat(localStorage.getItem('apexSavingsBalance') || '0');
-    const totalBalance = spendingBalance + savingsBalance;
-    const formattedBalance = `$${totalBalance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-    const maskedBalance = '$***,***,***.**';
+    const revealByDefault = options.revealByDefault !== false;
+    const totalBalance = getStoredTotalBalance();
+    const formattedBalance = formatCurrencyAmount(totalBalance);
+    const maskedBalance = '$••••••••';
 
     balanceAmountElement.dataset.fullBalance = formattedBalance;
     balanceAmountElement.dataset.maskedBalance = maskedBalance;
-    balanceAmountElement.dataset.isRevealed = 'false';
-    balanceAmountElement.textContent = maskedBalance;
-    balanceAmountElement.classList.add('apex-balance-amount--masked');
 
-    const balanceWrapper = balanceAmountElement.parentElement;
-    if (!balanceWrapper) return;
+    const shouldReveal = balanceAmountElement.dataset.isRevealed === 'true' || revealByDefault;
+    if (shouldReveal) {
+        balanceAmountElement.textContent = formattedBalance;
+        balanceAmountElement.dataset.isRevealed = 'true';
+        balanceAmountElement.classList.remove('apex-balance-amount--masked');
+    } else {
+        balanceAmountElement.textContent = maskedBalance;
+        balanceAmountElement.dataset.isRevealed = 'false';
+        balanceAmountElement.classList.add('apex-balance-amount--masked');
+    }
 
-    balanceWrapper.classList.add('apex-balance-display-row');
-
+    const balanceRow = balanceAmountElement.closest('.apex-balance-display-row');
     let viewButton = document.getElementById('balanceViewButton');
-    if (!viewButton) {
+    if (!viewButton && balanceRow) {
         viewButton = document.createElement('button');
         viewButton.id = 'balanceViewButton';
         viewButton.type = 'button';
         viewButton.className = 'apex-balance-toggle-btn';
-        viewButton.textContent = 'View';
-        balanceWrapper.appendChild(viewButton);
+        balanceRow.appendChild(viewButton);
     }
 
-    if (viewButton.dataset.bound === 'true') {
-        return;
+    if (viewButton) {
+        viewButton.textContent = shouldReveal ? 'Hide' : 'View';
+        viewButton.setAttribute('aria-pressed', shouldReveal ? 'true' : 'false');
     }
 
-    viewButton.addEventListener('click', function () {
-        const isRevealed = balanceAmountElement.dataset.isRevealed === 'true';
+    if (viewButton && viewButton.dataset.bound !== 'true') {
+        viewButton.addEventListener('click', function () {
+            const isRevealed = balanceAmountElement.dataset.isRevealed === 'true';
+            const latestFormatted = formatCurrencyAmount(getStoredTotalBalance());
 
-        if (isRevealed) {
-            balanceAmountElement.textContent = balanceAmountElement.dataset.maskedBalance || maskedBalance;
-            balanceAmountElement.dataset.isRevealed = 'false';
-            balanceAmountElement.classList.add('apex-balance-amount--masked');
-            this.textContent = 'View';
-            this.setAttribute('aria-pressed', 'false');
-            return;
-        }
+            if (isRevealed) {
+                balanceAmountElement.textContent = maskedBalance;
+                balanceAmountElement.dataset.isRevealed = 'false';
+                balanceAmountElement.classList.add('apex-balance-amount--masked');
+                this.textContent = 'View';
+                this.setAttribute('aria-pressed', 'false');
+                return;
+            }
 
-        // Sync with latest stored balances right before reveal.
-        const latestSpending = parseFloat(localStorage.getItem('apexSpendingBalance') || '0');
-        const latestSavings = parseFloat(localStorage.getItem('apexSavingsBalance') || '0');
-        const latestTotal = latestSpending + latestSavings;
-        const latestFormatted = `$${latestTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-
-        balanceAmountElement.dataset.fullBalance = latestFormatted;
-        balanceAmountElement.textContent = latestFormatted;
-        balanceAmountElement.dataset.isRevealed = 'true';
-        balanceAmountElement.classList.remove('apex-balance-amount--masked');
-        this.textContent = 'Hide';
-        this.setAttribute('aria-pressed', 'true');
-    });
-    viewButton.dataset.bound = 'true';
+            balanceAmountElement.dataset.fullBalance = latestFormatted;
+            balanceAmountElement.textContent = latestFormatted;
+            balanceAmountElement.dataset.isRevealed = 'true';
+            balanceAmountElement.classList.remove('apex-balance-amount--masked');
+            this.textContent = 'Hide';
+            this.setAttribute('aria-pressed', 'true');
+        });
+        viewButton.dataset.bound = 'true';
+    }
 
     window.balanceDisplay = balanceAmountElement;
     window.viewButton = viewButton;
@@ -1028,11 +1054,11 @@ function updateHomePage() {
     // Ensure universal account is set up
     setupUniversalAccount();
     
-    // Get user session
     const sessionData = sessionStorage.getItem('apexSession');
-    const currentUser = sessionData ? JSON.parse(sessionData) : null;
+    const sessionUser = sessionData ? JSON.parse(sessionData) : null;
+    const currentUser = sessionUser || getCurrentUser();
     
-    if (currentUser) {
+    if (currentUser && (currentUser.email || currentUser.name || currentUser.phone)) {
         console.log('Updating home page for user:', currentUser);
         
         // Extract user's first name properly
@@ -1079,9 +1105,8 @@ function updateHomePage() {
         // Update balance amount on homepage (specific ID)
         const balanceAmountElement = document.getElementById('balanceAmount');
         if (balanceAmountElement) {
-            // Setup masking instead of direct update
-            setupBalanceMasking();
-            console.log('Balance masking applied to homepage');
+            setupBalanceMasking({ revealByDefault: isPrimaryUserSession(currentUser) });
+            console.log('Balance display applied to homepage');
         }
         
         // Update other balance displays (not the main one)

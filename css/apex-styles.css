@@ -840,6 +840,10 @@ img {
 .apex-balance {
   text-align: center;
   padding: var(--apex-spacing-6) var(--apex-spacing-4) var(--apex-spacing-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--apex-spacing-2);
 }
 
 .apex-balance-amount {
@@ -871,8 +875,10 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--apex-spacing-3);
+  gap: var(--apex-spacing-2);
   flex-wrap: nowrap;
+  width: 100%;
+  max-width: 100%;
 }
 
 .apex-balance-amount--masked {
@@ -1675,13 +1681,8 @@ body.apex-mobile-more-open {
     line-height: 1.05;
   }
 
-  .apex-balance-display-row {
-    flex-direction: column;
-    gap: var(--apex-spacing-1);
-  }
-
   .apex-balance-display-row .apex-balance-amount {
-    font-size: clamp(1.45rem, 6.2vw, var(--apex-font-size-2xl));
+    font-size: clamp(1.2rem, 5.4vw, var(--apex-font-size-2xl));
   }
 
   .apex-balance-toggle-btn {
