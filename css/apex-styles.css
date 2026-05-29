@@ -843,17 +843,20 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--apex-spacing-2);
+  gap: var(--apex-spacing-3);
 }
 
 .apex-balance-amount {
-  font-size: clamp(2rem, 5vw, var(--apex-font-size-4xl));
+  font-size: clamp(1.35rem, 4.8vw, var(--apex-font-size-4xl));
   font-weight: 800;
   color: var(--apex-dark-blue);
-  margin-bottom: var(--apex-spacing-2);
+  margin-bottom: 0;
   line-height: 1.1;
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .apex-balance-amount,
@@ -865,24 +868,9 @@ img {
   word-break: break-word;
 }
 
-.apex-balance-display-row .apex-balance-amount {
-  white-space: nowrap;
-  overflow-wrap: normal;
-  word-break: normal;
-}
-
-.apex-balance-display-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--apex-spacing-2);
-  flex-wrap: nowrap;
-  width: 100%;
-  max-width: 100%;
-}
-
 .apex-balance-amount--masked {
   opacity: 0.82;
+  letter-spacing: 0.12em;
 }
 
 .apex-balance-toggle-btn {
@@ -897,6 +885,8 @@ img {
   text-transform: uppercase;
   line-height: 1;
   min-height: 32px;
+  flex-shrink: 0;
+  margin-top: var(--apex-spacing-1);
 }
 
 .apex-balance-toggle-btn[aria-pressed="true"] {
@@ -1474,10 +1464,6 @@ body.apex-mobile-more-open {
     line-height: 1.05;
   }
 
-  .apex-balance-display-row {
-    gap: var(--apex-spacing-2);
-  }
-
   .apex-balance-toggle-btn {
     min-height: 30px;
     padding: 5px 12px;
@@ -1681,8 +1667,8 @@ body.apex-mobile-more-open {
     line-height: 1.05;
   }
 
-  .apex-balance-display-row .apex-balance-amount {
-    font-size: clamp(1.2rem, 5.4vw, var(--apex-font-size-2xl));
+  .apex-balance-amount {
+    font-size: clamp(1.1rem, 5vw, var(--apex-font-size-2xl));
   }
 
   .apex-balance-toggle-btn {

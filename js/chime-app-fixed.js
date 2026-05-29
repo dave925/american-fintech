@@ -1004,14 +1004,19 @@ function setupBalanceMasking(options = {}) {
         balanceAmountElement.classList.add('apex-balance-amount--masked');
     }
 
-    const balanceRow = balanceAmountElement.closest('.apex-balance-display-row');
+    const balanceSection = balanceAmountElement.closest('.apex-balance');
     let viewButton = document.getElementById('balanceViewButton');
-    if (!viewButton && balanceRow) {
+    if (!viewButton && balanceSection) {
         viewButton = document.createElement('button');
         viewButton.id = 'balanceViewButton';
         viewButton.type = 'button';
         viewButton.className = 'apex-balance-toggle-btn';
-        balanceRow.appendChild(viewButton);
+        const balanceLabel = balanceSection.querySelector('.apex-balance-label');
+        if (balanceLabel) {
+            balanceSection.insertBefore(viewButton, balanceLabel);
+        } else {
+            balanceSection.appendChild(viewButton);
+        }
     }
 
     if (viewButton) {
