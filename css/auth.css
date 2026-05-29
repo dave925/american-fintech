@@ -1,0 +1,524 @@
+/* ==========================================================================
+   American Fintech — Premium Authentication UI
+   Matches landing page design system (Inter · Navy · Teal)
+   ========================================================================== */
+
+:root {
+  --auth-bg-dark: #071326;
+  --auth-bg-secondary: #0B1F3A;
+  --auth-accent-start: #11C5A3;
+  --auth-accent-end: #20E3C2;
+  --auth-accent-gradient: linear-gradient(135deg, var(--auth-accent-start), var(--auth-accent-end));
+  --auth-white: #FFFFFF;
+  --auth-input-bg: #F5F7FA;
+  --auth-text-muted: #7B8494;
+  --auth-text-dark: #0B1F3A;
+  --auth-border: rgba(11, 31, 58, 0.1);
+  --auth-border-focus: rgba(17, 197, 163, 0.5);
+  --auth-radius-card: 20px;
+  --auth-radius-btn: 14px;
+  --auth-radius-input: 12px;
+  --auth-shadow-card: 0 24px 64px rgba(7, 19, 38, 0.2), 0 8px 24px rgba(7, 19, 38, 0.08);
+  --auth-shadow-glow: 0 0 80px rgba(17, 197, 163, 0.2);
+  --auth-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --auth-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --auth-transition: 0.3s var(--auth-ease);
+  --auth-card-width: 440px;
+  --auth-card-width-login: 400px;
+  --auth-card-width-verify: 420px;
+}
+
+/* Page shell */
+body.auth-body {
+  margin: 0;
+  font-family: var(--auth-font);
+  min-height: 100vh;
+  background: var(--auth-bg-dark);
+  overflow-x: hidden;
+}
+
+body.auth-body main {
+  min-height: 100vh;
+}
+
+/* Reset legacy apex-auth shell — auth.css owns layout */
+body.auth-body .apex-auth {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none !important;
+  padding: 40px 20px;
+}
+
+body.auth-body .apex-auth::before {
+  display: none !important;
+}
+
+/* Strip legacy apex card chrome only — do NOT reset width (was causing full-viewport stretch) */
+body.auth-body .apex-auth-card {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+body.auth-body .apex-auth-header {
+  margin-bottom: 0;
+}
+
+body.auth-body .apex-form {
+  gap: 16px;
+}
+
+/* Hide legacy app nav on auth pages */
+body.auth-body .apex-nav {
+  display: none;
+}
+
+.auth-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  overflow: hidden;
+}
+
+.auth-page__bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(17, 197, 163, 0.15), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 10% 90%, rgba(32, 227, 194, 0.08), transparent 50%),
+    linear-gradient(165deg, var(--auth-bg-dark) 0%, var(--auth-bg-secondary) 55%, #0a2847 100%);
+}
+
+.auth-page__grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 10%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 10%, transparent 75%);
+}
+
+.auth-page__orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.auth-page__orb--1 {
+  width: 360px;
+  height: 360px;
+  background: rgba(17, 197, 163, 0.22);
+  top: -80px;
+  right: 10%;
+  animation: auth-orb 9s ease-in-out infinite;
+}
+
+.auth-page__orb--2 {
+  width: 280px;
+  height: 280px;
+  background: rgba(32, 227, 194, 0.12);
+  bottom: -60px;
+  left: 5%;
+  animation: auth-orb 11s ease-in-out infinite reverse;
+}
+
+@keyframes auth-orb {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Card — fixed width cap (was stretching to ~90vw due to max-width: none !important) */
+body.auth-body .auth-card.apex-auth-card {
+  position: relative;
+  z-index: 2;
+  width: min(100%, var(--auth-card-width));
+  max-width: var(--auth-card-width) !important;
+  margin-inline: auto;
+  flex-shrink: 0;
+  background: var(--auth-white) !important;
+  border-radius: var(--auth-radius-card) !important;
+  padding: 32px 36px 28px !important;
+  box-shadow: var(--auth-shadow-card), var(--auth-shadow-glow) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  animation: auth-card-in 0.7s var(--auth-ease) forwards,
+             auth-float 8s ease-in-out 0.7s infinite;
+}
+
+body.auth-body .auth-card.auth-card--login {
+  width: min(100%, var(--auth-card-width-login));
+  max-width: var(--auth-card-width-login) !important;
+}
+
+body.auth-body .auth-card.auth-card--verify {
+  width: min(100%, var(--auth-card-width-verify));
+  max-width: var(--auth-card-width-verify) !important;
+}
+
+@keyframes auth-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes auth-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Header */
+.auth-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.auth-logo {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px;
+  border-radius: 14px;
+  background: var(--auth-accent-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--auth-bg-dark);
+  font-size: 20px;
+  box-shadow: 0 8px 24px rgba(17, 197, 163, 0.35);
+}
+
+.auth-title {
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: var(--auth-text-dark);
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  margin: 0 0 6px;
+}
+
+.auth-subtitle {
+  font-size: 0.875rem;
+  color: var(--auth-text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Form layout */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-form .apex-form {
+  gap: 16px;
+}
+
+.auth-row {
+  display: grid;
+  gap: 16px;
+}
+
+.auth-row--2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.auth-row--1 {
+  grid-template-columns: 1fr;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.auth-field .apex-form-group {
+  gap: 6px;
+  margin: 0;
+}
+
+/* Labels */
+.auth-page .apex-label,
+.auth-field .apex-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--auth-text-dark);
+  letter-spacing: -0.01em;
+}
+
+/* Inputs */
+.auth-page .apex-input,
+.auth-page .verification-input {
+  width: 100%;
+  min-height: 46px;
+  padding: 11px 14px;
+  font-family: var(--auth-font);
+  font-size: 0.9375rem;
+  color: var(--auth-text-dark);
+  background: var(--auth-input-bg);
+  border: 1.5px solid var(--auth-border);
+  border-radius: var(--auth-radius-input);
+  transition: border-color var(--auth-transition),
+              box-shadow var(--auth-transition),
+              background var(--auth-transition);
+}
+
+.auth-page .apex-input::placeholder {
+  color: var(--auth-text-muted);
+  opacity: 0.85;
+}
+
+.auth-page .apex-input:hover {
+  border-color: rgba(17, 197, 163, 0.25);
+}
+
+.auth-page .apex-input:focus {
+  outline: none;
+  background: var(--auth-white);
+  border-color: var(--auth-accent-start);
+  box-shadow: 0 0 0 4px rgba(17, 197, 163, 0.15);
+}
+
+/* Checkbox / terms */
+.auth-terms {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 4px 0;
+}
+
+.auth-terms input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: var(--auth-accent-start);
+  cursor: pointer;
+}
+
+.auth-terms span {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--auth-text-muted);
+  line-height: 1.55;
+}
+
+.auth-terms a {
+  color: var(--auth-accent-start);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--auth-transition);
+}
+
+.auth-terms a:hover {
+  color: var(--auth-accent-end);
+  text-decoration: underline;
+}
+
+.auth-remember {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.auth-remember input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--auth-accent-start);
+  cursor: pointer;
+}
+
+.auth-remember span {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--auth-text-muted);
+}
+
+/* Buttons */
+.auth-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.auth-page .apex-btn {
+  font-family: var(--auth-font);
+  min-height: 48px;
+  padding: 12px 20px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border-radius: var(--auth-radius-btn);
+  transition: transform var(--auth-transition),
+              box-shadow var(--auth-transition),
+              background var(--auth-transition),
+              border-color var(--auth-transition),
+              color var(--auth-transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+}
+
+.auth-page .apex-btn::before {
+  display: none;
+}
+
+.auth-page .apex-btn-primary {
+  background: var(--auth-accent-gradient);
+  color: var(--auth-bg-dark);
+  box-shadow: 0 4px 20px rgba(17, 197, 163, 0.35);
+}
+
+.auth-page .apex-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(17, 197, 163, 0.45);
+}
+
+.auth-page .apex-btn-secondary {
+  background: var(--auth-white);
+  color: var(--auth-text-dark);
+  border: 1.5px solid var(--auth-border);
+}
+
+.auth-page .apex-btn-secondary:hover {
+  border-color: var(--auth-accent-start);
+  color: var(--auth-accent-start);
+  background: rgba(17, 197, 163, 0.06);
+  transform: translateY(-1px);
+}
+
+.auth-page .apex-btn-ghost {
+  color: var(--auth-text-muted);
+  background: transparent;
+  border: 1.5px solid var(--auth-border);
+}
+
+.auth-page .apex-btn-ghost:hover {
+  background: var(--auth-input-bg);
+  color: var(--auth-text-dark);
+}
+
+.auth-page .apex-btn-full {
+  width: 100%;
+}
+
+/* Password strength */
+.auth-page #passwordStrength {
+  margin-top: 6px !important;
+  font-size: 0.75rem;
+}
+
+/* Verification screen */
+.auth-page .verification-code-display {
+  background: var(--auth-accent-gradient) !important;
+  border-radius: var(--auth-radius-input) !important;
+  padding: 20px !important;
+  margin-bottom: 20px !important;
+  box-shadow: 0 8px 24px rgba(17, 197, 163, 0.25) !important;
+}
+
+.auth-verify-inputs {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.auth-verify-inputs .verification-input {
+  width: 48px !important;
+  min-height: 52px !important;
+  text-align: center;
+  font-size: 1.25rem !important;
+  font-weight: 700;
+  padding: 0 !important;
+}
+
+/* Toast override on auth pages */
+body.auth-body .apex-toast {
+  top: 24px;
+  background: var(--auth-bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--auth-radius-input);
+  font-family: var(--auth-font);
+}
+
+/* Back link (optional) */
+.auth-back {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: var(--auth-radius-btn);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  transition: all var(--auth-transition);
+}
+
+.auth-back:hover {
+  color: var(--auth-white);
+  border-color: rgba(17, 197, 163, 0.4);
+  background: rgba(17, 197, 163, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  body.auth-body .auth-card.apex-auth-card {
+    width: min(100%, var(--auth-card-width));
+    max-width: 100% !important;
+    padding: 28px 22px 24px !important;
+  }
+
+  .auth-row--2 {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-title {
+    font-size: 1.25rem;
+  }
+
+  .auth-back {
+    top: 16px;
+    left: 16px;
+    padding: 8px 12px;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-card {
+    animation: auth-card-in 0.4s var(--auth-ease) forwards;
+  }
+  .auth-page__orb { animation: none; }
+}

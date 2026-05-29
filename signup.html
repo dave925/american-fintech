@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - American Fintech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/apex-styles.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="auth-body">
+    <main>
+        <a href="index.html" class="auth-back" aria-label="Back to home">
+            <i class="fas fa-arrow-left"></i> Home
+        </a>
+
+        <!-- Sign Up Screen -->
+        <section id="signup-screen" class="auth-page apex-auth">
+            <div class="auth-page__bg" aria-hidden="true"></div>
+            <div class="auth-page__grid" aria-hidden="true"></div>
+            <div class="auth-page__orb auth-page__orb--1" aria-hidden="true"></div>
+            <div class="auth-page__orb auth-page__orb--2" aria-hidden="true"></div>
+
+            <div class="auth-card auth-card--signup apex-auth-card">
+                <header class="auth-header apex-auth-header">
+                    <div class="auth-logo apex-auth-logo">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h1 class="auth-title apex-auth-title">Create your American Fintech account</h1>
+                </header>
+
+                <form class="auth-form apex-form" id="signupForm">
+                    <!-- Row 1: First Name | Last Name -->
+                    <div class="auth-row auth-row--2">
+                        <div class="auth-field">
+                            <div class="apex-form-group">
+                                <label class="apex-label" for="signupFirstName">First Name</label>
+                                <input type="text" class="apex-input" placeholder="Enter your first name" id="signupFirstName" required>
+                            </div>
+                        </div>
+                        <div class="auth-field">
+                            <div class="apex-form-group">
+                                <label class="apex-label" for="signupLastName">Last Name</label>
+                                <input type="text" class="apex-input" placeholder="Enter your last name" id="signupLastName" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Email (full width) -->
+                    <div class="auth-row auth-row--1">
+                        <div class="auth-field">
+                            <div class="apex-form-group">
+                                <label class="apex-label" for="signupEmail">Email Address</label>
+                                <input type="email" class="apex-input" placeholder="Enter your email address" id="signupEmail" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Phone (full width) -->
+                    <div class="auth-row auth-row--1">
+                        <div class="auth-field">
+                            <div class="apex-form-group">
+                                <label class="apex-label" for="signupPhone">Phone Number</label>
+                                <input type="tel" class="apex-input" placeholder="Enter your phone number" id="signupPhone" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Password | Confirm Password -->
+                    <div class="auth-row auth-row--2">
+                        <div class="auth-field">
+                            <div class="apex-form-group">
+                                <label class="apex-label" for="signupPassword">Password</label>
+                                <input type="password" class="apex-input" placeholder="Create a password" id="signupPassword" required>
+                                <div id="passwordStrength"></div>
+                            </div>
+                        </div>
+                        <div class="auth-field">
+                            <div class="apex-form-group">
+                                <label class="apex-label" for="signupConfirmPassword">Confirm Password</label>
+                                <input type="password" class="apex-input" placeholder="Confirm your password" id="signupConfirmPassword" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 5: Terms -->
+                    <div class="auth-row auth-row--1">
+                        <div class="auth-terms">
+                            <input type="checkbox" id="agreeTerms">
+                            <span>
+                                I agree to the American Fintech
+                                <a href="#" onclick="showTermsAndConditions(); return false;">Terms of Service</a>
+                                and
+                                <a href="#" onclick="showPrivacyPolicy(); return false;">Privacy Policy</a>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Row 6: Create Account -->
+                    <div class="auth-actions">
+                        <button type="button" class="apex-btn apex-btn-primary apex-btn-full" onclick="createAccount()">
+                            <i class="fas fa-user-plus"></i>
+                            Create Account
+                        </button>
+
+                        <!-- Row 7: Sign In -->
+                        <button type="button" class="apex-btn apex-btn-secondary apex-btn-full" onclick="goToLogin()">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Already have an account? Sign in
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Verification Screen -->
+        <section id="verification-screen" class="auth-page apex-auth" style="display: none;">
+            <div class="auth-page__bg" aria-hidden="true"></div>
+            <div class="auth-page__grid" aria-hidden="true"></div>
+            <div class="auth-page__orb auth-page__orb--1" aria-hidden="true"></div>
+            <div class="auth-page__orb auth-page__orb--2" aria-hidden="true"></div>
+
+            <div class="auth-card auth-card--verify apex-auth-card">
+                <header class="auth-header apex-auth-header">
+                    <div class="auth-logo apex-auth-logo">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h1 class="auth-title apex-auth-title">Verify Your Account</h1>
+                    <p class="auth-subtitle apex-auth-subtitle">Enter the 6-digit verification code shown below</p>
+                </header>
+
+                <div class="verification-code-display" style="text-align: center;">
+                    <div style="font-size: 0.875rem; opacity: 0.9; margin-bottom: 8px;">Verification code</div>
+                    <div id="codeValue" style="font-size: 1.875rem; font-weight: 800; letter-spacing: 0.2em;">000000</div>
+                </div>
+
+                <div class="auth-verify-inputs">
+                    <input type="text" class="apex-input verification-input" inputmode="numeric" maxlength="1" oninput="handleVerificationInput(this, 0)" onkeydown="handleVerificationKeydown(event, 0)" aria-label="Digit 1">
+                    <input type="text" class="apex-input verification-input" inputmode="numeric" maxlength="1" oninput="handleVerificationInput(this, 1)" onkeydown="handleVerificationKeydown(event, 1)" aria-label="Digit 2">
+                    <input type="text" class="apex-input verification-input" inputmode="numeric" maxlength="1" oninput="handleVerificationInput(this, 2)" onkeydown="handleVerificationKeydown(event, 2)" aria-label="Digit 3">
+                    <input type="text" class="apex-input verification-input" inputmode="numeric" maxlength="1" oninput="handleVerificationInput(this, 3)" onkeydown="handleVerificationKeydown(event, 3)" aria-label="Digit 4">
+                    <input type="text" class="apex-input verification-input" inputmode="numeric" maxlength="1" oninput="handleVerificationInput(this, 4)" onkeydown="handleVerificationKeydown(event, 4)" aria-label="Digit 5">
+                    <input type="text" class="apex-input verification-input" inputmode="numeric" maxlength="1" oninput="handleVerificationInput(this, 5)" onkeydown="handleVerificationKeydown(event, 5)" aria-label="Digit 6">
+                </div>
+
+                <div class="auth-actions">
+                    <button type="button" class="apex-btn apex-btn-primary apex-btn-full" onclick="verifyEmail()">
+                        <i class="fas fa-check-circle"></i>
+                        Verify Account
+                    </button>
+                    <button type="button" class="apex-btn apex-btn-secondary apex-btn-full" onclick="resendVerification()">
+                        <i class="fas fa-redo"></i>
+                        Resend Code
+                    </button>
+                    <button type="button" class="apex-btn apex-btn-ghost apex-btn-full" onclick="location.reload()">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Sign Up
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="chimeToast" class="apex-toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Account created!</span>
+    </div>
+
+    <script src="js/chime-app-fixed.js"></script>
+    <script src="js/auth-ui.js"></script>
+    <script>
+        function goToLogin() {
+            window.location.href = 'login.html';
+        }
+
+        function showTermsAndConditions() {
+            const termsContent = `
+                <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+                    <h2 style="color: #11C5A3; margin-bottom: 20px;">American Fintech Terms of Service</h2>
+                    <h3 style="color: #0B1F3A; margin: 20px 0 10px 0;">1. Account Terms</h3>
+                    <p style="line-height: 1.6; margin-bottom: 15px;">By creating an American Fintech account, you agree to provide accurate information and maintain the security of your account credentials.</p>
+                    <h3 style="color: #0B1F3A; margin: 20px 0 10px 0;">2. Banking Services</h3>
+                    <p style="line-height: 1.6; margin-bottom: 15px;">American Fintech provides digital banking services including account management, transfers, and financial analytics. Services are subject to availability and regulatory compliance.</p>
+                    <h3 style="color: #0B1F3A; margin: 20px 0 10px 0;">3. Account Limits</h3>
+                    <p style="line-height: 1.6; margin-bottom: 15px;">Users may create one primary account and up to 4 additional accounts. All accounts are subject to AML and KYC verification requirements.</p>
+                    <h3 style="color: #0B1F3A; margin: 20px 0 10px 0;">4. Privacy and Data</h3>
+                    <p style="line-height: 1.6; margin-bottom: 15px;">We protect your data in accordance with our Privacy Policy and applicable banking regulations. Your information is never sold to third parties.</p>
+                    <h3 style="color: #0B1F3A; margin: 20px 0 10px 0;">5. Account Security</h3>
+                    <p style="line-height: 1.6; margin-bottom: 15px;">You are responsible for maintaining the confidentiality of your login credentials. Report unauthorized access immediately.</p>
+                    <h3 style="color: #0B1F3A; margin: 20px 0 10px 0;">6. Fee Structure</h3>
+                    <p style="line-height: 1.6; margin-bottom: 15px;">American Fintech offers fee-free basic banking services. Additional services may have associated fees which will be clearly disclosed.</p>
+                    <h3 style="color: #0B1F3A; margin: 20px 0 10px 0;">7. Account Closure</h3>
+                    <p style="line-height: 1.6; margin-bottom: 15px;">You may close your account at any time. Remaining funds will be transferred according to your instructions.</p>
+                    <p style="margin-top: 30px; font-size: 12px; color: #7B8494;">By continuing, you acknowledge that you have read, understood, and agree to be bound by these terms.</p>
+                </div>
+            `;
+            showModal('Terms of Service', termsContent);
+        }
+
+        function showPrivacyPolicy() {
+            const privacyContent = `
+                <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+                    <h2 style="color: #11C5A3; margin-bottom: 20px;">American Fintech Privacy Policy</h2>
+                    <h3 style="color: #0B1F3A; margin: 20px 0 10px 0;">Information We Collect</h3>
+                    <p style="line-height: 1.6; margin-bottom: 15px;">We collect information necessary to provide banking services, including personal identification, contact information, and transaction data.</p>
+                    <h3 style="color: #0B1F3A; margin: 20px 0 10px 0;">How We Use Your Information</h3>
+                    <p style="line-height: 1.6; margin-bottom: 15px;">Your information is used to provide banking services, prevent fraud, comply with regulations, and improve our services.</p>
+                    <h3 style="color: #0B1F3A; margin: 20px 0 10px 0;">Information Sharing</h3>
+                    <p style="line-height: 1.6; margin-bottom: 15px;">We do not sell your personal information. We may share information with regulatory authorities, law enforcement, or service providers as required by law.</p>
+                    <h3 style="color: #0B1F3A; margin: 20px 0 10px 0;">Data Security</h3>
+                    <p style="line-height: 1.6; margin-bottom: 15px;">We use industry-standard encryption and security measures to protect your information both in transit and at rest.</p>
+                    <h3 style="color: #0B1F3A; margin: 20px 0 10px 0;">Your Rights</h3>
+                    <p style="line-height: 1.6; margin-bottom: 15px;">You have the right to access, correct, or delete your personal information, subject to legal and regulatory requirements.</p>
+                    <h3 style="color: #0B1F3A; margin: 20px 0 10px 0;">Cookies and Tracking</h3>
+                    <p style="line-height: 1.6; margin-bottom: 15px;">We use cookies and similar technologies to enhance your experience and provide security features.</p>
+                    <h3 style="color: #0B1F3A; margin: 20px 0 10px 0;">Policy Updates</h3>
+                    <p style="line-height: 1.6; margin-bottom: 15px;">We may update this privacy policy. Changes will be communicated through our website or email notifications.</p>
+                    <p style="margin-top: 30px; font-size: 12px; color: #7B8494;">Last updated: ${new Date().toLocaleDateString()}</p>
+                </div>
+            `;
+            showModal('Privacy Policy', privacyContent);
+        }
+
+        function showModal(title, content) {
+            const modal = document.createElement('div');
+            modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(7,19,38,0.6);z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);';
+            modal.innerHTML = `
+                <div style="background:white;border-radius:20px;max-width:700px;max-height:80vh;overflow-y:auto;width:100%;box-shadow:0 24px 64px rgba(7,19,38,0.2);">
+                    <div style="padding:20px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;">
+                        <h3 style="margin:0;color:#11C5A3;font-family:Inter,sans-serif;">${title}</h3>
+                        <button onclick="this.closest('[style*=fixed]').remove()" style="background:none;border:none;font-size:24px;cursor:pointer;color:#666;">&times;</button>
+                    </div>
+                    <div style="padding:20px;font-family:Inter,sans-serif;">${content}</div>
+                    <div style="padding:20px;border-top:1px solid #eee;text-align:right;">
+                        <button onclick="this.closest('[style*=fixed]').remove()" style="background:linear-gradient(135deg,#11C5A3,#20E3C2);color:#071326;border:none;padding:10px 20px;border-radius:14px;cursor:pointer;font-weight:600;">Close</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(localStorage.getItem('apexCurrentUser') || '{}');
+            if (currentUser.email) {
+                const authTitle = document.querySelector('#signup-screen .apex-auth-title');
+                const authSubtitle = document.querySelector('#signup-screen .apex-auth-subtitle');
+                if (authTitle) authTitle.textContent = 'Create Additional Account';
+                if (authSubtitle) {
+                    authSubtitle.textContent = 'Add up to 4 additional accounts to your American Fintech profile';
+                    authSubtitle.style.display = 'block';
+                } else if (authTitle && !document.querySelector('#signup-screen .apex-auth-subtitle')) {
+                    const sub = document.createElement('p');
+                    sub.className = 'auth-subtitle apex-auth-subtitle';
+                    sub.textContent = 'Add up to 4 additional accounts to your American Fintech profile';
+                    authTitle.after(sub);
+                }
+            }
+        });
+
+        window.addEventListener('load', () => {
+            const secondaryUsers = JSON.parse(localStorage.getItem('apexSecondaryUsers') || '[]');
+            if (secondaryUsers.length >= 4) {
+                const titleEl = document.querySelector('#signup-screen .apex-auth-title');
+                if (titleEl) titleEl.textContent = 'Account Limit Reached';
+                let subtitle = document.querySelector('#signup-screen .apex-auth-subtitle');
+                if (!subtitle) {
+                    subtitle = document.createElement('p');
+                    subtitle.className = 'auth-subtitle apex-auth-subtitle';
+                    titleEl.after(subtitle);
+                }
+                subtitle.textContent = 'Maximum 4 additional accounts have been created';
+                document.getElementById('signupForm').style.display = 'none';
+                const messageDiv = document.createElement('div');
+                messageDiv.style.textAlign = 'center';
+                messageDiv.style.padding = '24px 0';
+                messageDiv.innerHTML = `
+                    <div style="width:72px;height:72px;background:#D97706;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+                        <i class="fas fa-exclamation-triangle" style="color:white;font-size:1.75rem;"></i>
+                    </div>
+                    <p style="color:#7B8494;margin-bottom:24px;line-height:1.6;">The maximum of 4 additional accounts has been reached. Please contact support if you need more accounts.</p>
+                    <a href="login.html" class="apex-btn apex-btn-primary" style="width:100%;display:inline-flex;justify-content:center;">
+                        <i class="fas fa-sign-in-alt"></i> Go to Login
+                    </a>
+                `;
+                document.querySelector('#signup-screen .apex-auth-card').appendChild(messageDiv);
+            }
+        });
+    </script>
+</body>
+</html>

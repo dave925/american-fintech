@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support - American Fintech</title>
+    <link rel="stylesheet" href="css/apex-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="apex-app">
+    <!-- Navigation -->
+    <nav class="apex-nav">
+        <div class="apex-nav-container">
+            <a href="index.html" class="apex-brand">
+                <div class="apex-brand-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <span class="apex-brand-label">American<em>Fintech</em></span>
+            </a>
+            
+            <!-- Desktop Navigation Menu -->
+            <div class="apex-nav-menu">
+                <a href="home.html" class="apex-nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="account.html" class="apex-nav-link">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Account</span>
+                </a>
+                <a href="goals.html" class="apex-nav-link">
+                    <i class="fas fa-piggy-bank"></i>
+                    <span>Goals</span>
+                </a>
+                <a href="move.html" class="apex-nav-link">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Move</span>
+                </a>
+                <a href="analytics.html" class="apex-nav-link">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="credit.html" class="apex-nav-link">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Credit</span>
+                </a>
+                <div class="apex-nav-dropdown">
+                    <button class="apex-nav-link apex-nav-dropdown-toggle">
+                        <i class="fas fa-ellipsis-h"></i>
+                        <span>More</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 4px;"></i>
+                    </button>
+                    <div class="apex-nav-dropdown-menu">
+                        <a href="settings.html" class="apex-nav-dropdown-item">
+                            <i class="fas fa-cog"></i>
+                            Settings
+                        </a>
+                        <a href="help.html" class="apex-nav-dropdown-item">
+                            <i class="fas fa-question-circle"></i>
+                            Help
+                        </a>
+                        <a href="#" class="apex-nav-dropdown-item" onclick="contactWhatsApp()" style="color: #25D366;">
+                            <i class="fab fa-whatsapp"></i>
+                            WhatsApp Support
+                        </a>
+                        <a href="#" class="apex-nav-dropdown-item" onclick="makePhoneCall()" style="color: var(--apex-light-blue);">
+                            <i class="fas fa-phone"></i>
+                            Call Support
+                        </a>
+                        <a href="notifications.html" class="apex-nav-dropdown-item">
+                            <i class="fas fa-bell"></i>
+                            Notifications
+                        </a>
+                        <a href="profile.html" class="apex-nav-dropdown-item">
+                            <i class="fas fa-user"></i>
+                            Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="apex-nav-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="apex-container apex-section">
+            <div style="text-align: center; margin-bottom: var(--apex-spacing-10);">
+                <h1 style="font-size: var(--apex-font-size-3xl); font-weight: 700; color: var(--apex-dark-blue); margin-bottom: var(--apex-spacing-4);">
+                    Help & Support
+                </h1>
+                <p style="font-size: var(--apex-font-size-lg); color: var(--apex-medium-gray);">
+                    Get help with your Chime account
+                </p>
+            </div>
+
+            <div class="apex-grid">
+                <div class="apex-feature-card" onclick="showFAQ()">
+                    <div class="apex-feature-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3 class="apex-feature-title">FAQ</h3>
+                    <p class="apex-feature-description">Find answers to common questions</p>
+                </div>
+                
+                <div class="apex-feature-card" onclick="showContactSupport()">
+                    <div class="apex-feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="apex-feature-title">Contact Support</h3>
+                    <p class="apex-auth-subtitle">Get help with your American Fintech account</p>
+                </div>
+                
+                <div class="apex-feature-card" onclick="showSecurityHelp()">
+                    <div class="apex-feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="apex-feature-title">Security Help</h3>
+                    <p class="apex-feature-description">Learn about account security</p>
+                </div>
+                
+                <div class="apex-feature-card" onclick="showTroubleshooting()">
+                    <div class="apex-feature-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="apex-feature-title">Troubleshooting</h3>
+                    <p class="apex-feature-description">Fix common issues</p>
+                </div>
+            </div>
+
+            <div class="apex-card" style="margin-top: var(--apex-spacing-6);">
+                <h3 style="font-size: var(--apex-font-size-xl); font-weight: 600; color: var(--apex-dark-blue); margin-bottom: var(--apex-spacing-4);">
+                    <i class="fas fa-headset" style="margin-right: var(--apex-spacing-2); color: var(--apex-primary-teal);"></i>
+                    Customer Service
+                </h3>
+                <p style="color: var(--apex-medium-gray); margin-bottom: var(--apex-spacing-6);">
+                    Get instant help from our customer service team through WhatsApp or phone call
+                </p>
+                
+                <div class="apex-grid" style="grid-template-columns: 1fr 1fr; gap: var(--apex-spacing-4);">
+                    <div class="apex-card" style="background: var(--apex-teal-pale); border: 1px solid var(--apex-primary-teal); cursor: pointer;" onclick="contactWhatsApp()">
+                        <div style="text-align: center; padding: var(--apex-spacing-4);">
+                            <div style="font-size: 2rem; color: #25D366; margin-bottom: var(--apex-spacing-2);">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <h4 style="color: var(--apex-primary-teal); font-weight: 600; margin-bottom: var(--apex-spacing-2);">WhatsApp</h4>
+                            <p style="font-size: var(--apex-font-size-sm); color: var(--apex-dark-gray); margin-bottom: var(--apex-spacing-2);">
+                                Chat with us instantly
+                            </p>
+                            <p style="font-size: var(--apex-font-size-sm); font-weight: 600; color: var(--apex-navy);">
+                                +1 414-512-4732
+                            </p>
+                            <button class="apex-btn apex-btn-primary" style="margin-top: var(--apex-spacing-3); background: #25D366; border-color: #25D366;">
+                                <i class="fab fa-whatsapp"></i>
+                                Open WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="apex-card" style="background: var(--apex-blue-pale); border: 1px solid var(--apex-light-blue); cursor: pointer;" onclick="makePhoneCall()">
+                        <div style="text-align: center; padding: var(--apex-spacing-4);">
+                            <div style="font-size: 2rem; color: var(--apex-light-blue); margin-bottom: var(--apex-spacing-2);">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h4 style="color: var(--apex-light-blue); font-weight: 600; margin-bottom: var(--apex-spacing-2);">Phone Call</h4>
+                            <p style="font-size: var(--apex-font-size-sm); color: var(--apex-dark-gray); margin-bottom: var(--apex-spacing-2);">
+                                Speak with our support team
+                            </p>
+                            <p style="font-size: var(--apex-font-size-sm); font-weight: 600; color: var(--apex-navy);">
+                                (470) 616-3556
+                            </p>
+                            <button class="apex-btn apex-btn-primary" style="margin-top: var(--apex-spacing-3);">
+                                <i class="fas fa-phone"></i>
+                                Call Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: var(--apex-spacing-4); padding: var(--apex-spacing-4); background: var(--apex-light-gray); border-radius: var(--apex-radius-lg);">
+                    <p style="font-size: var(--apex-font-size-sm); color: var(--apex-medium-gray); text-align: center;">
+                        <i class="fas fa-clock" style="margin-right: var(--apex-spacing-1);"></i>
+                        <strong>Business Hours:</strong> Monday-Friday 8AM-8PM EST, Saturday 9AM-5PM EST
+                    </p>
+                </div>
+            </div>
+            
+            <div class="apex-card" style="margin-top: var(--apex-spacing-6);">
+                <h3 style="font-size: var(--apex-font-size-xl); font-weight: 600; color: var(--apex-dark-blue); margin-bottom: var(--apex-spacing-4);">Quick Links</h3>
+                <div style="display: flex; flex-direction: column; gap: var(--apex-spacing-3);">
+                    <button class="apex-btn apex-btn-secondary apex-btn-full">
+                        <i class="fas fa-book"></i>
+                        User Guide
+                    </button>
+                    <button class="apex-btn apex-btn-secondary apex-btn-full">
+                        <i class="fas fa-comments"></i>
+                        Community Forum
+                    </button>
+                    <button class="apex-btn apex-btn-secondary apex-btn-full">
+                        <i class="fas fa-file-alt"></i>
+                        Terms & Conditions
+                    </button>
+                    <button class="apex-btn apex-btn-secondary apex-btn-full">
+                        <i class="fas fa-lock"></i>
+                        Privacy Policy
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Navigation Bar -->
+    <div class="apex-mobile-bar">
+        <a href="home.html" class="apex-mobile-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="account.html" class="apex-mobile-item">
+            <i class="fas fa-credit-card"></i>
+            <span>Account</span>
+        </a>
+        <a href="goals.html" class="apex-mobile-item">
+            <i class="fas fa-piggy-bank"></i>
+            <span>Goals</span>
+        </a>
+        <a href="move.html" class="apex-mobile-item">
+            <i class="fas fa-exchange-alt"></i>
+            <span>Move</span>
+        </a>
+        <a href="analytics.html" class="apex-mobile-item">
+            <i class="fas fa-chart-line"></i>
+            <span>Analytics</span>
+        </a>
+        <a href="#" class="apex-mobile-item" onclick="showMoreMenu()">
+            <i class="fas fa-ellipsis-h"></i>
+            <span>More</span>
+        </a>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="chimeToast" class="apex-toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Help loaded!</span>
+    </div>
+
+    <!-- Mobile Navigation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            const navMenu = document.querySelector('.apex-nav-menu');
+            
+            if (mobileToggle && navMenu) {
+                mobileToggle.addEventListener('click', function() {
+                    if (navMenu.style.display === 'flex') {
+                        navMenu.style.display = 'none';
+                    } else {
+                        navMenu.style.display = 'flex';
+                        navMenu.style.position = 'absolute';
+                        navMenu.style.top = '100%';
+                        navMenu.style.left = '0';
+                        navMenu.style.right = '0';
+                        navMenu.style.background = 'var(--apex-navy)';
+                        navMenu.style.flexDirection = 'column';
+                        navMenu.style.padding = 'var(--apex-spacing-4)';
+                        navMenu.style.boxShadow = 'var(--apex-shadow-2xl)';
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- Scripts -->
+    <script src="js/chime-app-fixed.js"></script>
+    
+    <script>
+        // Customer Service Contact Functions
+        function contactWhatsApp() {
+            const phoneNumber = '+14145124732';
+            const message = encodeURIComponent('Hello! I need help with my American Fintech account.');
+            const whatsappUrl = `https://wa.me/${phoneNumber.replace(/[^\d]/g, '')}?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+        
+        function makePhoneCall() {
+            const phoneNumber = '+14706163556';
+            window.location.href = `tel:${phoneNumber}`;
+        }
+        
+        // Show contact support function
+        function showContactSupport() {
+            alert('Please use our customer service options:\n\nWhatsApp: +1 414-512-4732\nPhone: (470) 616-3556\n\nAvailable Monday-Friday 8AM-8PM EST, Saturday 9AM-5PM EST');
+        }
+    </script>
+</body>
+</html>

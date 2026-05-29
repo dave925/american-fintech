@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goals - American Fintech</title>
+    <link rel="stylesheet" href="css/apex-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="apex-app">
+    <!-- Navigation -->
+    <nav class="apex-nav">
+        <div class="apex-nav-container">
+            <a href="index.html" class="apex-brand">
+                <div class="apex-brand-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <span class="apex-brand-label">American<em>Fintech</em></span>
+            </a>
+            
+            <!-- Desktop Navigation Menu -->
+            <div class="apex-nav-menu">
+                <a href="home.html" class="apex-nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="account.html" class="apex-nav-link">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Account</span>
+                </a>
+                <a href="goals.html" class="apex-nav-link">
+                    <i class="fas fa-piggy-bank"></i>
+                    <span>Goals</span>
+                </a>
+                <a href="move.html" class="apex-nav-link">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Move</span>
+                </a>
+                <a href="analytics.html" class="apex-nav-link">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="credit.html" class="apex-nav-link">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Credit</span>
+                </a>
+                <div class="apex-nav-dropdown">
+                    <button class="apex-nav-link apex-nav-dropdown-toggle">
+                        <i class="fas fa-ellipsis-h"></i>
+                        <span>More</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 4px;"></i>
+                    </button>
+                    <div class="apex-nav-dropdown-menu">
+                        <a href="settings.html" class="apex-nav-dropdown-item">
+                            <i class="fas fa-cog"></i>
+                            Settings
+                        </a>
+                        <a href="help.html" class="apex-nav-dropdown-item">
+                            <i class="fas fa-question-circle"></i>
+                            Help
+                        </a>
+                        <a href="notifications.html" class="apex-nav-dropdown-item">
+                            <i class="fas fa-bell"></i>
+                            Notifications
+                        </a>
+                        <a href="profile.html" class="apex-nav-dropdown-item">
+                            <i class="fas fa-user"></i>
+                            Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="apex-nav-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="apex-container apex-section">
+            <div style="text-align: center; margin-bottom: var(--apex-spacing-10);">
+                <h1 style="font-size: var(--apex-font-size-3xl); font-weight: 700; color: var(--apex-dark-blue); margin-bottom: var(--apex-spacing-4);">
+                    Your Goals
+                </h1>
+                <p style="font-size: var(--apex-font-size-lg); color: var(--apex-medium-gray);">
+                    Save automatically with roundups and scheduled transfers
+                </p>
+            </div>
+
+            <div class="apex-goals" id="goalsList">
+                <div class="apex-goal" style="border: 2px dashed var(--apex-medium-gray); background: transparent; cursor: pointer;" onclick="createNewGoal()">
+                    <div class="apex-goal-icon" style="background: var(--apex-light-gray);">
+                        <i class="fas fa-plus" style="color: var(--apex-medium-gray);"></i>
+                    </div>
+                    <h3 class="apex-goal-name" style="color: var(--apex-medium-gray);">Create new goal</h3>
+                    <div class="apex-goal-amount" style="color: var(--apex-medium-gray);">$0.00</div>
+                    <div class="apex-goal-progress">
+                        <div class="apex-goal-progress-bar" style="width: 0%; background: var(--apex-medium-gray);"></div>
+                    </div>
+                    <div class="apex-goal-percentage" style="color: var(--apex-medium-gray);">0% saved</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Navigation Bar -->
+    <div class="apex-mobile-bar">
+        <a href="home.html" class="apex-mobile-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="account.html" class="apex-mobile-item">
+            <i class="fas fa-credit-card"></i>
+            <span>Account</span>
+        </a>
+        <a href="goals.html" class="apex-mobile-item active">
+            <i class="fas fa-piggy-bank"></i>
+            <span>Goals</span>
+        </a>
+        <a href="move.html" class="apex-mobile-item">
+            <i class="fas fa-exchange-alt"></i>
+            <span>Move</span>
+        </a>
+        <a href="analytics.html" class="apex-mobile-item">
+            <i class="fas fa-chart-line"></i>
+            <span>Analytics</span>
+        </a>
+        <a href="#" class="apex-mobile-item" onclick="showMoreMenu()">
+            <i class="fas fa-ellipsis-h"></i>
+            <span>More</span>
+        </a>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="apexToast" class="apex-toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Goal created!</span>
+    </div>
+
+    <!-- Mobile Navigation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            const navMenu = document.querySelector('.apex-nav-menu');
+            
+            if (mobileToggle && navMenu) {
+                mobileToggle.addEventListener('click', function() {
+                    if (navMenu.style.display === 'flex') {
+                        navMenu.style.display = 'none';
+                    } else {
+                        navMenu.style.display = 'flex';
+                        navMenu.style.position = 'absolute';
+                        navMenu.style.top = '100%';
+                        navMenu.style.left = '0';
+                        navMenu.style.right = '0';
+                        navMenu.style.background = 'var(--apex-navy)';
+                        navMenu.style.flexDirection = 'column';
+                        navMenu.style.padding = 'var(--apex-spacing-4)';
+                        navMenu.style.boxShadow = 'var(--apex-shadow-2xl)';
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- Scripts -->
+    <script src="js/chime-app-fixed.js"></script>
+    
+    <script>
+        // More dropdown functionality
+        function toggleMoreDropdown(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const dropdown = document.getElementById('moreDropdown');
+            if (dropdown) {
+                dropdown.classList.toggle('active');
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function closeDropdown(e) {
+                    if (!e.target.closest('.apex-nav-more')) {
+                        dropdown.classList.remove('active');
+                        document.removeEventListener('click', closeDropdown);
+                    }
+                });
+            }
+        }
+    </script>
+    
+    <!-- More Dropdown Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const moreToggle = document.querySelector('.apex-nav-more-toggle');
+            const moreDropdown = document.querySelector('.apex-nav-more-dropdown');
+            
+            if (moreToggle && moreDropdown) {
+                const moreLinks = moreDropdown.querySelectorAll('a');
+                
+                // Toggle dropdown
+                moreToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const isExpanded = moreToggle.getAttribute('aria-expanded') === 'true';
+                    moreToggle.setAttribute('aria-expanded', !isExpanded);
+                    moreDropdown.classList.toggle('active');
+                    
+                    // Change icon
+                    const icon = moreToggle.querySelector('i');
+                    if (icon) {
+                        icon.className = isExpanded ? 'fas fa-chevron-down' : 'fas fa-chevron-up';
+                    }
+                });
+                
+                // Close dropdown when clicking on a link
+                if (moreLinks && moreLinks.length > 0) {
+                    moreLinks.forEach(link => {
+                        link.addEventListener('click', function() {
+                            moreDropdown.classList.remove('active');
+                            moreToggle.setAttribute('aria-expanded', 'false');
+                            const icon = moreToggle.querySelector('i');
+                            if (icon) {
+                                icon.className = 'fas fa-chevron-down';
+                            }
+                        });
+                    });
+                }
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!moreToggle.contains(event.target) && !moreDropdown.contains(event.target)) {
+                        moreDropdown.classList.remove('active');
+                        moreToggle.setAttribute('aria-expanded', 'false');
+                        const icon = moreToggle.querySelector('i');
+                        if (icon) {
+                            icon.className = 'fas fa-chevron-down';
+                        }
+                    }
+                });
+                
+                // Close dropdown on escape key
+                document.addEventListener('keydown', function(event) {
+                    if (event.key === 'Escape' && moreDropdown.classList.contains('active')) {
+                        moreDropdown.classList.remove('active');
+                        moreToggle.setAttribute('aria-expanded', 'false');
+                        const icon = moreToggle.querySelector('i');
+                        if (icon) {
+                            icon.className = 'fas fa-chevron-down';
+                        }
+                    }
+                });
+            }
+            
+            // Initialize goals
+            loadGoals();
+            renderGoals();
+        });
+    </script>
+
+    <!-- Floating More button removed (top-nav dropdown is the single source of truth). -->
+</body>
+</html>

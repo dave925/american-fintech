@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>American Fintech — Modern Banking Made Simple</title>
+    <meta name="description" content="Experience premium digital banking with American Fintech. No fees, early direct deposit, and smart financial tools.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <header class="navbar" id="navbar">
+        <div class="container navbar__inner">
+            <a href="index.html" class="logo" id="brandLink">
+                <div class="logo__icon"><i class="fas fa-layer-group"></i></div>
+                <div class="logo__text">American<em>Fintech</em></div>
+            </a>
+
+            <nav class="nav-links" aria-label="Primary">
+                <a href="#features">Features</a>
+                <a href="#about">About</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn--outline">Log In</a>
+                <a href="signup.html" class="btn btn--primary">Open Account</a>
+            </div>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#contact">Contact</a>
+        <a href="login.html" class="btn btn--outline">Log In</a>
+        <a href="signup.html" class="btn btn--primary">Open Account</a>
+    </nav>
+
+    <main>
+
+        <!-- ========== HERO ========== -->
+        <section class="hero" id="hero">
+            <div class="hero__bg"></div>
+            <div class="hero__grid" aria-hidden="true"></div>
+            <div class="hero__orb hero__orb--1"></div>
+            <div class="hero__orb hero__orb--2"></div>
+
+            <div class="container hero__inner">
+                <div class="hero__content reveal">
+                    <div class="hero__badge">
+                        <i class="fas fa-shield-halved"></i>
+                        FDIC Insured · Member Bank Partners
+                    </div>
+                    <h1>Banking That <span>Works For You</span></h1>
+                    <p class="hero__desc">
+                        No hidden fees. Get paid up to 2 days early. Build credit automatically.
+                        Join millions who've made the switch to smarter, premium digital banking.
+                    </p>
+                    <div class="hero__ctas">
+                        <a href="signup.html" class="btn btn--primary btn--lg">
+                            <i class="fas fa-rocket"></i>
+                            Open Your Free Account
+                        </a>
+                        <a href="#features" class="btn btn--outline btn--lg">
+                            <i class="fas fa-play-circle"></i>
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero__visual reveal">
+                    <div class="hero__glow"></div>
+
+                    <div class="phone">
+                        <div class="phone__notch"></div>
+                        <div class="phone__screen">
+                            <div class="phone__header">
+                                <span class="phone__greeting">Good morning, Alex</span>
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="phone__balance-label">Available balance</div>
+                            <div class="phone__balance">$24,580<span>.42</span></div>
+                            <div class="phone__actions">
+                                <div class="phone__action">
+                                    <div class="phone__action-icon"><i class="fas fa-paper-plane"></i></div>
+                                    Send
+                                </div>
+                                <div class="phone__action">
+                                    <div class="phone__action-icon"><i class="fas fa-arrow-down"></i></div>
+                                    Deposit
+                                </div>
+                                <div class="phone__action">
+                                    <div class="phone__action-icon"><i class="fas fa-chart-pie"></i></div>
+                                    Invest
+                                </div>
+                                <div class="phone__action">
+                                    <div class="phone__action-icon"><i class="fas fa-ellipsis-h"></i></div>
+                                    More
+                                </div>
+                            </div>
+                            <div class="phone__tx-title">Recent activity</div>
+                            <div class="phone__tx">
+                                <div class="phone__tx-icon"><i class="fas fa-bolt"></i></div>
+                                <div class="phone__tx-info">
+                                    <div class="phone__tx-name">Direct Deposit</div>
+                                    <div class="phone__tx-date">Today · 9:14 AM</div>
+                                </div>
+                                <div class="phone__tx-amount">+$3,240.00</div>
+                            </div>
+                            <div class="phone__tx">
+                                <div class="phone__tx-icon"><i class="fas fa-shopping-bag"></i></div>
+                                <div class="phone__tx-info">
+                                    <div class="phone__tx-name">Whole Foods</div>
+                                    <div class="phone__tx-date">Yesterday</div>
+                                </div>
+                                <div class="phone__tx-amount phone__tx-amount--neg">−$84.32</div>
+                            </div>
+                            <div class="phone__tx">
+                                <div class="phone__tx-icon"><i class="fas fa-utensils"></i></div>
+                                <div class="phone__tx-info">
+                                    <div class="phone__tx-name">Blue Bottle Coffee</div>
+                                    <div class="phone__tx-date">Yesterday</div>
+                                </div>
+                                <div class="phone__tx-amount phone__tx-amount--neg">−$6.50</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="debit-card">
+                        <div class="debit-card__chip"></div>
+                        <div class="debit-card__number">•••• •••• •••• 4829</div>
+                        <div class="debit-card__footer">
+                            <div>
+                                <div style="opacity:0.7;font-size:9px;">Card holder</div>
+                                <div class="debit-card__name">ALEX MORGAN</div>
+                            </div>
+                            <div>
+                                <div style="opacity:0.7;font-size:9px;">Expires</div>
+                                <div>09/28</div>
+                            </div>
+                            <div style="font-size:18px;font-weight:800;letter-spacing:0.05em;">VISA</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== FEATURES ========== -->
+        <section class="features" id="features">
+            <div class="container">
+                <header class="section-header reveal">
+                    <h2>Why Choose American Fintech?</h2>
+                    <p>Everything you need in a bank, nothing you don't — built for how you live and work today.</p>
+                </header>
+
+                <div class="features__grid">
+                    <article class="feature-card reveal">
+                        <div class="feature-card__icon feature-card__icon--teal">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h3>No Monthly Fees</h3>
+                        <p>No minimum balance requirements, no monthly maintenance fees, no overdraft fees. Ever.</p>
+                    </article>
+
+                    <article class="feature-card reveal">
+                        <div class="feature-card__icon feature-card__icon--blue">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Early Direct Deposit</h3>
+                        <p>Get your paycheck up to 2 days early when you set up direct deposit with American Fintech.</p>
+                    </article>
+
+                    <article class="feature-card reveal">
+                        <div class="feature-card__icon feature-card__icon--teal">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>FDIC Insured</h3>
+                        <p>Your money is protected up to $250,000 through FDIC insurance at our partner banks.</p>
+                    </article>
+
+                    <article class="feature-card reveal">
+                        <div class="feature-card__icon feature-card__icon--purple">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile Banking</h3>
+                        <p>Manage your money on the go with our award-winning mobile app and 24/7 access.</p>
+                    </article>
+
+                    <article class="feature-card reveal">
+                        <div class="feature-card__icon feature-card__icon--teal">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h3>Free Debit Card</h3>
+                        <p>Get a free Visa® debit card with contactless payments and worldwide ATM access.</p>
+                    </article>
+
+                    <article class="feature-card reveal">
+                        <div class="feature-card__icon feature-card__icon--blue">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Build Credit</h3>
+                        <p>Build your credit history automatically with our Credit Builder account — no credit check required.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== STATS ========== -->
+        <section class="stats" aria-label="Company statistics">
+            <div class="container">
+                <div class="stats__grid">
+                    <div class="stat-item reveal">
+                        <div class="stat-item__value stat-item__value--accent">2M+</div>
+                        <div class="stat-item__label">Happy Customers</div>
+                    </div>
+                    <div class="stat-item reveal">
+                        <div class="stat-item__value">$10B+</div>
+                        <div class="stat-item__label">Transactions Processed</div>
+                    </div>
+                    <div class="stat-item reveal">
+                        <div class="stat-item__value stat-item__value--accent">4.8★</div>
+                        <div class="stat-item__label">App Store Rating</div>
+                    </div>
+                    <div class="stat-item reveal">
+                        <div class="stat-item__value">24/7</div>
+                        <div class="stat-item__label">Customer Support</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== BANKING REIMAGINED ========== -->
+        <section class="reimagined" id="about">
+            <div class="container">
+                <div class="reimagined__grid">
+                    <div class="reimagined__visual reveal">
+                        <div class="reimagined__canvas">
+                            <div class="float-ui float-ui--chart">
+                                <div class="float-ui__label">Monthly growth</div>
+                                <div class="float-ui__value">+24.8%</div>
+                                <div class="chart-bars">
+                                    <span></span><span></span><span></span><span></span><span></span>
+                                </div>
+                            </div>
+                            <div class="float-ui float-ui--wallet">
+                                <div class="float-ui__label">Savings</div>
+                                <div class="float-ui__value">$12,400</div>
+                            </div>
+                            <div class="float-ui float-ui--shield">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="reimagined__center-icon">
+                                <i class="fas fa-building-columns"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reimagined__content reveal">
+                        <h2>Banking Reimagined</h2>
+                        <p>
+                            American Fintech was founded on a simple principle: banking should be simple,
+                            transparent, and work for you — not against you. We've eliminated the complexity
+                            and hidden fees that traditional banks use to profit at your expense.
+                        </p>
+                        <p>
+                            With American Fintech, you get modern digital banking tools, early access to your money,
+                            and the freedom to manage your finances on your terms. No branches, no paperwork,
+                            no hassle — just smart banking that fits your life.
+                        </p>
+                        <div class="reimagined__ctas">
+                            <a href="signup.html" class="btn btn--primary btn--lg">
+                                <i class="fas fa-user-plus"></i>
+                                Join American Fintech
+                            </a>
+                            <a href="#contact" class="btn btn--outline-dark btn--lg">
+                                <i class="fas fa-phone"></i>
+                                Contact Us
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== TESTIMONIALS ========== -->
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <header class="section-header reveal">
+                    <h2>What Our Customers Say</h2>
+                    <p>Join thousands of satisfied American Fintech customers who've transformed their financial lives.</p>
+                </header>
+
+                <div class="testimonials__grid">
+                    <article class="testimonial-card reveal">
+                        <div class="testimonial-card__stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-card__quote">
+                            "American Fintech changed my life. No more hidden fees and I get my paycheck 2 days early. The app is incredibly easy to use."
+                        </p>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__avatar">SJ</div>
+                            <div>
+                                <div class="testimonial-card__name">Sarah Johnson</div>
+                                <div class="testimonial-card__meta">Customer since 2023</div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial-card reveal">
+                        <div class="testimonial-card__stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-card__quote">
+                            "The Credit Builder feature helped me improve my credit score by 100 points in just 6 months. Absolutely incredible!"
+                        </p>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__avatar">MC</div>
+                            <div>
+                                <div class="testimonial-card__name">Mike Chen</div>
+                                <div class="testimonial-card__meta">Customer since 2022</div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial-card reveal">
+                        <div class="testimonial-card__stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-card__quote">
+                            "Finally, a bank that doesn't nickel and dime me. The savings goals feature helps me stay on track with my finances."
+                        </p>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__avatar">ED</div>
+                            <div>
+                                <div class="testimonial-card__name">Emily Davis</div>
+                                <div class="testimonial-card__meta">Customer since 2024</div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CTA BANNER ========== -->
+        <section class="cta-banner" id="cta">
+            <div class="cta-banner__bg"></div>
+            <div class="cta-banner__glow"></div>
+            <div class="container cta-banner__inner reveal">
+                <h2>Ready to Switch to Better Banking?</h2>
+                <p>Join American Fintech today and experience banking the way it should be — modern, transparent, and built for you.</p>
+                <div class="cta-banner__buttons">
+                    <a href="signup.html" class="btn btn--white btn--lg">
+                        <i class="fas fa-rocket"></i>
+                        Open Your Free Account
+                    </a>
+                    <a href="login.html" class="btn btn--outline btn--lg">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Log In
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CONTACT ========== -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <header class="section-header reveal">
+                    <h2>Get in Touch</h2>
+                    <p>Have questions? Our team is here to help you 24 hours a day, 7 days a week.</p>
+                </header>
+
+                <div class="contact__grid">
+                    <article class="contact-card reveal">
+                        <div class="contact-card__icon"><i class="fas fa-phone"></i></div>
+                        <h3>Call Us</h3>
+                        <p>1-800-263-8462</p>
+                        <p>Available 24/7</p>
+                    </article>
+
+                    <article class="contact-card reveal">
+                        <div class="contact-card__icon"><i class="fas fa-envelope"></i></div>
+                        <h3>Email Us</h3>
+                        <p>support@americanfintech.com</p>
+                        <p>Response within 24 hours</p>
+                    </article>
+
+                    <article class="contact-card reveal">
+                        <div class="contact-card__icon"><i class="fas fa-comments"></i></div>
+                        <h3>Live Chat</h3>
+                        <p>Chat with our support team</p>
+                        <p>Available 24/7 in-app</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo__icon"><i class="fas fa-layer-group"></i></div>
+                        <div class="logo__text">American<em>Fintech</em></div>
+                    </a>
+                    <p>Modern banking made simple, transparent, and accessible to everyone.</p>
+                    <div class="footer__social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="#">Checking Account</a></li>
+                        <li><a href="#">Savings Account</a></li>
+                        <li><a href="#">Credit Builder</a></li>
+                        <li><a href="#">Debit Card</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">FDIC Notice</a></li>
+                        <li><a href="#">Licenses</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p>© 2026 American Fintech. All rights reserved. Member FDIC.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast -->
+    <div class="toast" id="toast" role="status" aria-live="polite">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Welcome to American Fintech</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

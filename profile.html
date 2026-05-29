@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - American Fintech</title>
+    <link rel="stylesheet" href="css/apex-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="apex-app">
+    <!-- Navigation -->
+    <nav class="apex-nav">
+        <div class="apex-nav-container">
+            <a href="index.html" class="apex-brand">
+                <div class="apex-brand-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <span class="apex-brand-label">American<em>Fintech</em></span>
+            </a>
+            
+            <!-- Desktop Navigation Menu -->
+            <div class="apex-nav-menu">
+                <a href="home.html" class="apex-nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="account.html" class="apex-nav-link">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Account</span>
+                </a>
+                <a href="goals.html" class="apex-nav-link">
+                    <i class="fas fa-piggy-bank"></i>
+                    <span>Goals</span>
+                </a>
+                <a href="move.html" class="apex-nav-link">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Move</span>
+                </a>
+                <a href="analytics.html" class="apex-nav-link">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="credit.html" class="apex-nav-link">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Credit</span>
+                </a>
+                <div class="apex-nav-dropdown">
+                    <button class="apex-nav-link apex-nav-dropdown-toggle">
+                        <i class="fas fa-ellipsis-h"></i>
+                        <span>More</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 4px;"></i>
+                    </button>
+                    <div class="apex-nav-dropdown-menu">
+                        <a href="settings.html" class="apex-nav-dropdown-item">
+                            <i class="fas fa-cog"></i>
+                            Settings
+                        </a>
+                        <a href="help.html" class="apex-nav-dropdown-item">
+                            <i class="fas fa-question-circle"></i>
+                            Help
+                        </a>
+                        <a href="notifications.html" class="apex-nav-dropdown-item">
+                            <i class="fas fa-bell"></i>
+                            Notifications
+                        </a>
+                        <a href="profile.html" class="apex-nav-dropdown-item">
+                            <i class="fas fa-user"></i>
+                            Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="apex-nav-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="apex-container apex-section">
+            <header class="apex-page-header apex-page-header--center">
+                <h1>Profile</h1>
+                <p>Manage your account settings and preferences</p>
+            </header>
+
+            <div class="apex-card" style="max-width: 600px; margin: 0 auto;">
+                <div class="apex-profile-header" style="padding-top: 0; margin-bottom: var(--apex-spacing-6);">
+                    <div class="apex-profile-avatar" id="profileAvatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 style="font-size: var(--apex-font-size-xl); font-weight: 700; color: var(--apex-dark-blue); margin-top: var(--apex-spacing-4);" id="profileName">User Name</h3>
+                    <p style="color: var(--apex-medium-gray);" id="profileEmail">user@email.com</p>
+                </div>
+
+                <div style="border-top: 1px solid var(--apex-light-gray); padding-top: var(--apex-spacing-8);">
+                    <button class="apex-btn apex-btn-full" style="margin-bottom: var(--apex-spacing-3); background: var(--apex-white); color: var(--apex-dark-blue); border: 2px solid var(--apex-light-gray); transition: all var(--apex-transition-fast);" onmouseover="this.style.borderColor='var(--apex-primary-teal)'; this.style.color='var(--apex-primary-teal)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='var(--apex-shadow-md)'" onmouseout="this.style.borderColor='var(--apex-light-gray)'; this.style.color='var(--apex-dark-blue)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'" onclick="editProfile()">
+                        <i class="fas fa-user-edit"></i>
+                        Edit profile
+                    </button>
+                    <button class="apex-btn apex-btn-full" style="margin-bottom: var(--apex-spacing-3); background: var(--apex-white); color: var(--apex-dark-blue); border: 2px solid var(--apex-light-gray); transition: all var(--apex-transition-fast);" onmouseover="this.style.borderColor='var(--apex-primary-teal)'; this.style.color='var(--apex-primary-teal)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='var(--apex-shadow-md)'" onmouseout="this.style.borderColor='var(--apex-light-gray)'; this.style.color='var(--apex-dark-blue)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'" onclick="goToNotifications()">
+                        <i class="fas fa-bell"></i>
+                        Notifications
+                    </button>
+                    <button class="apex-btn apex-btn-full" style="margin-bottom: var(--apex-spacing-3); background: var(--apex-white); color: var(--apex-dark-blue); border: 2px solid var(--apex-light-gray); transition: all var(--apex-transition-fast);" onmouseover="this.style.borderColor='var(--apex-primary-teal)'; this.style.color='var(--apex-primary-teal)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='var(--apex-shadow-md)'" onmouseout="this.style.borderColor='var(--apex-light-gray)'; this.style.color='var(--apex-dark-blue)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'" onclick="goToSettings()">
+                        <i class="fas fa-shield-alt"></i>
+                        Security settings
+                    </button>
+                    <button class="apex-btn apex-btn-full" style="margin-bottom: var(--apex-spacing-3); background: var(--apex-white); color: var(--apex-dark-blue); border: 2px solid var(--apex-light-gray); transition: all var(--apex-transition-fast);" onmouseover="this.style.borderColor='var(--apex-primary-teal)'; this.style.color='var(--apex-primary-teal)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='var(--apex-shadow-md)'" onmouseout="this.style.borderColor='var(--apex-light-gray)'; this.style.color='var(--apex-dark-blue)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'" onclick="goToHelp()">
+                        <i class="fas fa-question-circle"></i>
+                        Help & support
+                    </button>
+                    <button class="apex-btn apex-btn-full" style="background: transparent; color: var(--apex-error); border: 2px solid var(--apex-error); transition: all var(--apex-transition-fast);" onmouseover="this.style.background='var(--apex-error)'; this.style.color='var(--apex-white)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='var(--apex-shadow-md)'" onmouseout="this.style.background='transparent'; this.style.color='var(--apex-error)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'" onclick="apexSignOut()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Sign out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Navigation Bar -->
+    <div class="apex-mobile-bar">
+        <a href="home.html" class="apex-mobile-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="account.html" class="apex-mobile-item">
+            <i class="fas fa-credit-card"></i>
+            <span>Account</span>
+        </a>
+        <a href="goals.html" class="apex-mobile-item">
+            <i class="fas fa-piggy-bank"></i>
+            <span>Goals</span>
+        </a>
+        <a href="move.html" class="apex-mobile-item">
+            <i class="fas fa-exchange-alt"></i>
+            <span>Move</span>
+        </a>
+        <a href="analytics.html" class="apex-mobile-item">
+            <i class="fas fa-chart-line"></i>
+            <span>Analytics</span>
+        </a>
+        <a href="#" class="apex-mobile-item" onclick="showMoreMenu()">
+            <i class="fas fa-ellipsis-h"></i>
+            <span>More</span>
+        </a>
+    <!-- Toast Notification -->
+    <div id="chimeToast" class="apex-toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Profile updated!</span>
+    </div>
+
+    <!-- Mobile Navigation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            const navMenu = document.querySelector('.apex-nav-menu');
+            
+            if (mobileToggle && navMenu) {
+                mobileToggle.addEventListener('click', function() {
+                    if (navMenu.style.display === 'flex') {
+                        navMenu.style.display = 'none';
+                    } else {
+                        navMenu.style.display = 'flex';
+                        navMenu.style.position = 'absolute';
+                        navMenu.style.top = '100%';
+                        navMenu.style.left = '0';
+                        navMenu.style.right = '0';
+                        navMenu.style.background = 'var(--apex-navy)';
+                        navMenu.style.flexDirection = 'column';
+                        navMenu.style.padding = 'var(--apex-spacing-4)';
+                        navMenu.style.boxShadow = 'var(--apex-shadow-2xl)';
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- Scripts -->
+    <script src="js/chime-app-fixed.js"></script>
+    
+    <script>
+        // Update profile information
+        function updateProfileInfo() {
+            const profileNameElement = document.getElementById('profileName');
+            const profileEmailElement = document.getElementById('profileEmail');
+            
+            if (apexState.currentUser) {
+                if (profileNameElement) {
+                    profileNameElement.textContent = apexState.currentUser.name;
+                }
+                if (profileEmailElement) {
+                    profileEmailElement.textContent = apexState.currentUser.email;
+                }
+            }
+        }
+        
+        // Profile page button functions
+        function editProfile() {
+            chimeToast('Edit profile feature coming soon!', 'info');
+        }
+        
+        function goToNotifications() {
+            window.location.href = 'notifications.html';
+        }
+        
+        function goToSettings() {
+            window.location.href = 'settings.html';
+        }
+        
+        function goToHelp() {
+            window.location.href = 'help.html';
+        }
+        
+        // Make functions globally available
+        window.editProfile = editProfile;
+        window.goToNotifications = goToNotifications;
+        window.goToSettings = goToSettings;
+        window.goToHelp = goToHelp;
+    </script>
+
+    <!-- Floating More button removed (top-nav dropdown is the single source of truth). -->
+</body>
+</html>
