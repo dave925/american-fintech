@@ -22,10 +22,12 @@ const PRIMARY_ACCOUNT = Object.freeze({
     lastName: 'Couzens',
     name: 'Hannah Lovia Couzens',
     accountNumber: '45284731',
-    balance: 3256786.30
+    balance: 324258936.00
 });
 
-const PRIMARY_DEMO_TOTAL_BALANCE = 3256786.30;
+const PRIMARY_DEMO_SPENDING_BALANCE = 298258936.00;
+const PRIMARY_DEMO_SAVINGS_BALANCE = 26000000.00;
+const PRIMARY_DEMO_TOTAL_BALANCE = PRIMARY_DEMO_SPENDING_BALANCE + PRIMARY_DEMO_SAVINGS_BALANCE;
 
 function isPrimaryAccountEmail(email) {
     return (email || '').toLowerCase() === PRIMARY_ACCOUNT.email.toLowerCase();
@@ -845,8 +847,8 @@ function setupUniversalAccount() {
 
     if (isPrimary) {
         console.log('Setting up primary demo account...');
-        localStorage.setItem('apexSpendingBalance', PRIMARY_DEMO_TOTAL_BALANCE.toFixed(2));
-        localStorage.setItem('apexSavingsBalance', '0.00');
+        localStorage.setItem('apexSpendingBalance', PRIMARY_DEMO_SPENDING_BALANCE.toFixed(2));
+        localStorage.setItem('apexSavingsBalance', PRIMARY_DEMO_SAVINGS_BALANCE.toFixed(2));
 
         const mergedUser = {
             ...currentUser,
@@ -1579,10 +1581,13 @@ function updateAccountPageBalances() {
         }
     }
     
-    // Also try to find any other balance elements
+    // Update other generic balance placeholders (never overwrite account-specific IDs)
     const balanceElements = document.querySelectorAll('[id*="balance"], [class*="balance"]');
     balanceElements.forEach(element => {
-        const text = element.textContent;
+        if (element.id === 'spending-balance' || element.id === 'savings-balance' || element.id === 'balanceAmount') {
+            return;
+        }
+        const text = element.textContent.trim();
         if (text === '$0.00' || text === '0.00') {
             element.textContent = formattedTotal;
             updatedCount++;
